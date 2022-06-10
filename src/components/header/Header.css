@@ -1,0 +1,16 @@
+.header-calendar-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  margin-left: 20px;
+}
+
+.add-event {
+  color: red;
+  font-size: 24px;
+  margin-right: 20px;
+}

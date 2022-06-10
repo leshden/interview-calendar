@@ -1,0 +1,10 @@
+.calendar-days-container {
+  background-color: rgb(230,230,230);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1px solid silver;
+  border-top: 1px solid silver;
+
+}
