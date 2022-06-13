@@ -6,5 +6,11 @@
   flex-direction: column;
   border-bottom: 1px solid silver;
   border-top: 1px solid silver;
+}
 
+.row-month-year-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+    width: 740px;
 }
