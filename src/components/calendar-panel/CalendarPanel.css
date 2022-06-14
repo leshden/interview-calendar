@@ -1,16 +1,35 @@
-.calendar-days-container {
-  background-color: rgb(230,230,230);
+.calendar-panel-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
+  background-color: rgb(230,230,230);
   border-bottom: 1px solid silver;
   border-top: 1px solid silver;
 }
 
-.row-month-year-container {
+.emptyHoursBlock {
+  width: 10%;
+  height: 100%;
+}
+
+.calendar-days-container {
+  width:90%;
   display: flex;
-  justify-content:space-between;
+  justify-content: center;
   align-items: center;
-    width: 740px;
+  flex-direction: column;
+}
+
+.row-days-symbols-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.row-days-numbers-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
