@@ -19,17 +19,3 @@
   align-items: center;
   flex-direction: column;
 }
-
-.row-days-symbols-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.row-days-numbers-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
