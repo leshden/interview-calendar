@@ -1,11 +1,17 @@
-import './Header.css'
+import {HeaderContainer, HeaderTitle, Button} from './HeaderStyled';
+
 
 const Header = () => {
+
+  const addEventOnClick = () => {
+    console.log('Add Event!');
+  }
+
   return (
-    <div className='header-calendar-container'>
-      <h3 className='header-title'>Interview Calendar</h3>
-      <span className='add-event'>+</span>
-    </div>
+    <HeaderContainer>
+      <HeaderTitle>Interview Calendar</HeaderTitle>
+      <Button onClick={addEventOnClick}>+</Button>
+    </HeaderContainer>
   );
 }
 
