@@ -1,12 +1,16 @@
-import {DayPanelContainer, DayPanelNumber} from './DayPanelStyled';
+import {DayPanelContainer, DayPanelNumber, DayPanelNumberContainer, DayPanelText} from './DayPanelStyled';
 
 const width = window.innerWidth;
 
 const DayPanel = () => {
+  const selected = true;
+
   return (
     <DayPanelContainer prinary={width}>
-      <div>T</div>
-      <DayPanelNumber selected = {true}>12</DayPanelNumber>
+      <DayPanelText>T</DayPanelText>
+      <DayPanelNumberContainer selected = {selected}>
+        <DayPanelNumber selected = {selected}>22</DayPanelNumber>
+      </DayPanelNumberContainer>
     </DayPanelContainer>
   );
 }
