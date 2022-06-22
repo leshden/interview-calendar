@@ -2,14 +2,14 @@ import {DayPanelContainer, DayPanelNumber, DayPanelNumberContainer, DayPanelText
 
 const width = window.innerWidth;
 
-const DayPanel = () => {
+const DayPanel = ({txt, num}) => {
   const selected = true;
 
   return (
     <DayPanelContainer prinary={width}>
-      <DayPanelText>T</DayPanelText>
+      <DayPanelText>{txt}</DayPanelText>
       <DayPanelNumberContainer selected = {selected}>
-        <DayPanelNumber selected = {selected}>22</DayPanelNumber>
+        <DayPanelNumber selected = {selected}>{num}</DayPanelNumber>
       </DayPanelNumberContainer>
     </DayPanelContainer>
   );

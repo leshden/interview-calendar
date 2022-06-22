@@ -1,60 +1,26 @@
-import {DaysPanelContainer, DaysPanelContainerScroll} from './DaysPanelStyled';
 import DayPanel from '../day-panel/DayPanel';
-import { useState } from "react";
+import DaysPanelScroll from '../days-panel-scroll/DaysPanelScroll';
 
 const DaysPanel = () => {
 
-  const [offset, setOffset] = useState(0);
-  const [curOffset, setCurOffset] = useState(0);
-  const [clickPos, setClickPos] = useState({pos: 0, offset: 0});
-  const [isDown, setIsDown] = useState(false);
-
-  const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-  const mouseDown = (e) => {
-
-    const offset = e.currentTarget.offsetLeft;
-    const pos = e.clientX - offset;
-    
-    setClickPos({ pos: pos, offset: offset});
-    setIsDown(true);
-  }
-
-  const mouseUp = () => {
-    setIsDown(false);
-    setCurOffset(offset);
-
-  }
-
-  const mouseMove = (e) => {
-    if (!isDown) {
-      return;
-    }
-    const movePos = curOffset + (e.clientX - clickPos.offset) - clickPos.pos;
-    setOffset(movePos);
-  }
-
-  const mouseOut = () => {
-    setIsDown(false);
-    setCurOffset(offset);
-  }
+  const dayText = ['M', 'T', 'W', 'T', 'F', 'S', 'S' ];
+  const curDate = new Date();
+  const countDaysInMonth = new Date(curDate.getFullYear(), curDate.getMonth(), 0).getDate();
+  const generatedDays = Array.from({ length: countDaysInMonth }, (_, i) => i+1);
+  const days = generatedDays.map((item, index) => {
+    return {txt: dayText[new Date(curDate.getFullYear(), curDate.getMonth(), index).getDay()], num: item}
+  });
 
   return (
-    <DaysPanelContainer>
-    <DaysPanelContainerScroll offset={offset}
-                              onMouseUp={mouseUp}
-                              onMouseDown={mouseDown}
-                              onMouseMove={mouseMove}
-                              onMouseOut ={mouseOut}>
+      <DaysPanelScroll>
       {
-        days.map(item => {
+        days.map((item, index) => {
           return(
-          <DayPanel key={item}/>
+          <DayPanel key={index} txt={item.txt} num={item.num} />
         );
        })
       }
-    </DaysPanelContainerScroll>
-    </DaysPanelContainer>
+    </DaysPanelScroll>
   );
 }
 
