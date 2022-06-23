@@ -5,6 +5,7 @@ export const DayPanelContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: yellow;
 `;
 
 export const DayPanelText = styled.div`

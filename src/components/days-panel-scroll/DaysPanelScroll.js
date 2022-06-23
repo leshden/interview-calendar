@@ -9,7 +9,7 @@ const DaysPanelScroll = ({children}) => {
   const [isDown, setIsDown] = useState(false);
 
   const mouseDown = (e) => {
-
+    e.preventDefault();
     const offset = e.currentTarget.offsetLeft;
     const pos = e.clientX - offset;
 
@@ -17,13 +17,15 @@ const DaysPanelScroll = ({children}) => {
     setIsDown(true);
   }
 
-  const mouseUp = () => {
+  const mouseUp = (e) => {
+    e.preventDefault();
     setIsDown(false);
     setCurOffset(offset);
 
   }
 
   const mouseMove = (e) => {
+    e.preventDefault();
     if (!isDown) {
       return;
     }
@@ -31,7 +33,8 @@ const DaysPanelScroll = ({children}) => {
     setOffset(movePos);
   }
 
-  const mouseOut = () => {
+  const mouseOut = (e) => {
+    e.preventDefault();
     setIsDown(false);
     setCurOffset(offset);
   }
