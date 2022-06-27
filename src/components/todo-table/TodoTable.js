@@ -1,13 +1,14 @@
-import {TodoPanelContainer, TodoPanelTest, TodoPanelContainerInner} from './TodoPanelStyled';
+import {TodoTableContainer, TodoTableMain,TodoTableHours, TodoTableTest, TodoTableContainerInner, TodoRowTest, TodoTableRowContainer} from './TodoTableStyled';
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useEffect, useState } from 'react';
 
-const TodosPanel = () => {
+const TodoTable = () => {
 
   const ref = useRef();
   const { events } = useDraggable(ref);
   const [count, setCount] = useState(9);
   const [arr, setArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const hours = Array.from(Array(24).keys());
 
   useEffect(()=>{
     const offset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
@@ -31,25 +32,46 @@ const TodosPanel = () => {
   }
 
   return (
-    <TodoPanelContainer
+    <TodoTableMain>
+      <TodoTableHours />
+    <TodoTableContainer
       {...events}
       ref={ref}
       onScroll={handleOnScroll}
     >
-      <TodoPanelContainerInner>
+      <TodoTableContainerInner>
     {
       arr.map((item, index) => {
         return(
-          <TodoPanelTest key={index}>
-            {item}
-          </TodoPanelTest>
+            //hours.map(item_h => {
+            <TodoTableRowContainer key = {index}>
+              {
+                hours.map((it, indexH) => {
+                  return(
+                    <TodoTableTest key={index.toString() + indexH.toString()}>
+                      {item}
+                    </TodoTableTest>
+                  )
+                })
+              }
+
+            </TodoTableRowContainer>
+
+            //})
+
+
+
+
+
         )
       })
     }
 
-    </TodoPanelContainerInner>
-    </TodoPanelContainer>
+    </TodoTableContainerInner>
+    </TodoTableContainer>
+
+    </TodoTableMain>
   );
 }
 
-export default TodosPanel;
+export default TodoTable;

@@ -10,12 +10,12 @@ export const TodoPanelContainer = styled.div`
 
 export const TodoPanelContainerInner = styled.div`
     display: flex;
-    width: 150%;
+    width: 130%;
     justify-content: space-between;
 `;
 
 export const TodoPanelTest = styled.div`
-  width: 50px;
+  width: 40px;
   height: 50px;
   background: green;
 `;
