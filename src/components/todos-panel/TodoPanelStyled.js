@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const TodoPanelContainer = styled.div`
-  width: 150%;
+  width: 100%;
   height: 20%;
   background: orange;
 
@@ -10,12 +10,12 @@ export const TodoPanelContainer = styled.div`
 
 export const TodoPanelContainerInner = styled.div`
     display: flex;
-    width: 200%;
-    justify-content: space-around;
+    width: 150%;
+    justify-content: space-between;
 `;
 
 export const TodoPanelTest = styled.div`
-  width: 100px;
+  width: 50px;
   height: 50px;
   background: green;
 `;

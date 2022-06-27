@@ -8,10 +8,7 @@ function App() {
   return (
     <div className="App">
       <div className='calendar-container'>
-        <Header />
-        <CalendarPanel />
         <TodosPanel />
-        <FooterPanel />
       </div>
     </div>
   );
