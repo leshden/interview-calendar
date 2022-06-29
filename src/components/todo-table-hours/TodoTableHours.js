@@ -13,9 +13,9 @@ const TodoTableHours = ({offset, hours}) => {
 
       <TodoTableHoursContainer ref={ref}>
       {
-        hours.map(item => {
+        hours.map((item, index) => {
           return (
-            <TodoTableHourItem>
+            <TodoTableHourItem key={index}>
               {item + ':00'}
             </TodoTableHourItem>
           )

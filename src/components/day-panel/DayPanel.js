@@ -1,12 +1,10 @@
 import {DayPanelContainer, DayPanelNumber, DayPanelNumberContainer, DayPanelText} from './DayPanelStyled';
 
-const width = window.innerWidth;
-
 const DayPanel = ({txt, num}) => {
   const selected = true;
 
   return (
-    <DayPanelContainer prinary={width}>
+    <DayPanelContainer>
       <DayPanelText>{txt}</DayPanelText>
       <DayPanelNumberContainer selected = {selected}>
         <DayPanelNumber selected = {selected}>{num}</DayPanelNumber>
