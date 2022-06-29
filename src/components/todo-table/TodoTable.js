@@ -1,6 +1,7 @@
-import {TodoTableContainer, TodoTableMain,TodoTableHours, TodoTableTest, TodoTableContainerInner, TodoRowTest, TodoTableRowContainer} from './TodoTableStyled';
+import {TodoTableContainer, TodoTableMain, TodoTableTest, TodoTableContainerInner, TodoRowTest, TodoTableRowContainer} from './TodoTableStyled';
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useEffect, useState } from 'react';
+import TodoTableHours from '../todo-table-hours/TodoTableHours';
 
 const TodoTable = () => {
 
@@ -9,6 +10,7 @@ const TodoTable = () => {
   const [count, setCount] = useState(9);
   const [arr, setArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const hours = Array.from(Array(24).keys());
+  const [offsetTopScroll, setOffsetTopScroll] = useState(0);
 
   useEffect(()=>{
     const offset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
@@ -16,6 +18,7 @@ const TodoTable = () => {
   }, [])
 
   const handleOnScroll = (e) => {
+      setOffsetTopScroll(e.target.scrollTop);
       const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
       if (e.target.scrollLeft > offset) {
         e.target.scrollLeft = 0;
@@ -33,7 +36,7 @@ const TodoTable = () => {
 
   return (
     <TodoTableMain>
-      <TodoTableHours />
+      <TodoTableHours offset={offsetTopScroll} hours = {hours}/>
     <TodoTableContainer
       {...events}
       ref={ref}

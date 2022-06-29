@@ -6,13 +6,6 @@ export const TodoTableMain = styled.div`
   display: flex;
 `;
 
-
-export const TodoTableHours = styled.div`
-  width: 10%;
-  height: 500px;
-  background: orange;
-`;
-
 export const TodoTableContainer = styled.div`
   width: 90%;
   height: 100%;
