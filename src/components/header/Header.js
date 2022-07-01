@@ -4,7 +4,7 @@ import {HeaderContainer, HeaderTitle, Button} from './HeaderStyled';
 const Header = () => {
 
   const addEventOnClick = () => {
-    console.log('Add Event!');
+    // TODO:
   }
 
   return (

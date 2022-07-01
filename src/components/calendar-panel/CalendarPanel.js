@@ -1,4 +1,4 @@
-import './CalendarPanel.css';
+import {CalendarPanelContainer, CalendarPanelDaysMonthContainer} from './CalendarPanelStyled';
 import Fragment from 'react';
 import MonthPanel from '../month-panel/MonthPanel';
 import DaysPanel from '../days-panel/DaysPanel';
@@ -6,14 +6,12 @@ import DaysPanel from '../days-panel/DaysPanel';
 const CalendarPanel = () => {
 
   return (
-      <div className='calendar-panel-container'>
-        <div className='emptyHoursBlock' />
-
-        <div className='calendar-days-container'>
+      <CalendarPanelContainer>
+        <CalendarPanelDaysMonthContainer>
           <DaysPanel />
           <MonthPanel />
-        </div>
-      </div>
+        </CalendarPanelDaysMonthContainer>
+      </CalendarPanelContainer>
   )
 }
 
