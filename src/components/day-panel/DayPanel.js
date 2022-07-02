@@ -1,14 +1,10 @@
-import {DayPanelContainer, DayPanelNumber, DayPanelNumberContainer, DayPanelText} from './DayPanelStyled';
+import {DayPanelContainer, DayPanelNumber, DayPanelText} from './DayPanelStyled';
 
-const DayPanel = ({txt, num}) => {
-  const selected = true;
-
+const DayPanel = ({txt, num, selected}) => {
   return (
     <DayPanelContainer>
       <DayPanelText>{txt}</DayPanelText>
-      <DayPanelNumberContainer selected = {selected}>
-        <DayPanelNumber selected = {selected}>{num}</DayPanelNumber>
-      </DayPanelNumberContainer>
+      <DayPanelNumber selected = {selected}>{num}</DayPanelNumber>
     </DayPanelContainer>
   );
 }

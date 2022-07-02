@@ -7,18 +7,16 @@ const MonthPanel = () => {
 
   const nextMonth = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
-    console.log('next month');
   }
 
   const prevMonth = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
-    console.log('prev month');
   }
 
   return(
     <MonthPanelContainer>
       <Button className='button-change-month' onClick={prevMonth}>&#10094;</Button>
-      <div>{monthYearStr}</div>
+      <p>{monthYearStr}</p>
       <Button className='button-change-month' onClick={nextMonth}>&#10095;</Button>
     </MonthPanelContainer>
   );

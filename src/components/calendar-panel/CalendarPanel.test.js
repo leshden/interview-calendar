@@ -3,5 +3,6 @@ import CalendarPanel from './CalendarPanel';
 
 test('render CalendarPanel', () => {
   render(<CalendarPanel />);
-  // TODO:
+  const sectionPanel = screen.getByRole('section');
+  expect(sectionPanel).toBeInTheDocument();
 });

@@ -16,7 +16,7 @@ const DaysPanel = () => {
       {
         days.map((item, index) => {
           return(
-          <DayPanel key={index} txt={item.txt} num={item.num} />
+          <DayPanel key={index} txt={item.txt} num={item.num} selected={true} />
         );
        })
       }

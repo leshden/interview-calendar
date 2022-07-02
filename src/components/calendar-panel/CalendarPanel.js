@@ -6,7 +6,7 @@ import DaysPanel from '../days-panel/DaysPanel';
 const CalendarPanel = () => {
 
   return (
-      <CalendarPanelContainer>
+      <CalendarPanelContainer role='section'>
         <CalendarPanelDaysMonthContainer>
           <DaysPanel />
           <MonthPanel />
