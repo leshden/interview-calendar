@@ -1,7 +1,9 @@
-import {TodoTableContainer, TodoTableMain, TodoTableTest, TodoTableContainerInner, TodoRowTest, TodoTableRowContainer} from './TodoTableStyled';
+import {TodoTableContainer, TodoTableMain, TodoTableContainerInner} from './TodoTableStyled';
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useEffect, useState } from 'react';
 import TodoTableHours from '../todo-table-hours/TodoTableHours';
+import TodoTableRow from '../todo-table-row/TodoTableRow';
+
 
 const TodoTable = () => {
 
@@ -37,42 +39,17 @@ const TodoTable = () => {
   return (
     <TodoTableMain>
       <TodoTableHours offset={offsetTopScroll} hours = {hours}/>
-    <TodoTableContainer
-      {...events}
-      ref={ref}
-      onScroll={handleOnScroll}
-    >
-      <TodoTableContainerInner>
-    {
-      arr.map((item, index) => {
-        return(
-            //hours.map(item_h => {
-            <TodoTableRowContainer key = {index}>
-              {
-                hours.map((it, indexH) => {
-                  return(
-                    <TodoTableTest key={index.toString() + indexH.toString()}>
-                      {item}
-                    </TodoTableTest>
-                  )
-                })
-              }
-
-            </TodoTableRowContainer>
-
-            //})
-
-
-
-
-
-        )
-      })
-    }
-
-    </TodoTableContainerInner>
-    </TodoTableContainer>
-
+      <TodoTableContainer {...events} ref={ref} onScroll={handleOnScroll}>
+        <TodoTableContainerInner>
+          {
+            arr.map((item, index) => {
+              return(
+                  <TodoTableRow key = {index} item={item} hours={hours} index={index}/>
+              )
+            })
+          }
+        </TodoTableContainerInner>
+      </TodoTableContainer>
     </TodoTableMain>
   );
 }

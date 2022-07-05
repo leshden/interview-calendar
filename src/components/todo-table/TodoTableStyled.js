@@ -20,24 +20,3 @@ export const TodoTableContainerInner = styled.div`
     height: 500px;
     justify-content: space-between;
 `;
-
-export const TodoTableRowContainer = styled.div`
-  width: 100%;
-  min-width: 40px;
-  height: 100%;
-`;
-
-export const TodoTableTest = styled.div`
-  width: 100%;
-  min-width: 40px;
-  height: 50px;
-  background: white;
-  border-right: 1px solid gray;
-  border-bottom: 1px solid gray;
-`;
-
-export const TodoRowTest = styled.div`
-  width: 50px;
-  height 50px;
-  bakckground: pink;
-`;
