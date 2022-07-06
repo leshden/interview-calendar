@@ -1,10 +1,13 @@
 import {DaysPanelScroll, DaysPanelContainer} from './DaysPanelStyled';
 import DayPanel from '../day-panel/DayPanel';
 import { useDraggable } from "react-use-draggable-scroll";
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import {GetSymbolTextOfDay} from '../../utils/Utils';
+import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 
 const DaysPanel = () => {
+
+  const {setOffset} = useContext(OffsetScrollContext);
 
   const initialState = () => {
     const arr = [new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date()];
@@ -20,8 +23,8 @@ const DaysPanel = () => {
   const { events } = useDraggable(ref);
 
   useEffect(()=>{
-    const offset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
-    ref.current.scrollLeft = offset;
+    const curOffset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
+    ref.current.scrollLeft = curOffset;
   }, [])
 
   const [arr, setArr] = useState(initialState);
@@ -31,16 +34,18 @@ const DaysPanel = () => {
   });
 
   const handleOnScroll = (e) => {
-    const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
-    if (e.target.scrollLeft > offset) {
+    const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
+    setOffset(e.target.scrollLeft);
+    if (e.target.scrollLeft > curOffset) {
       e.target.scrollLeft = 0;
+      setOffset(0);
       const fArr = arr.slice(1);
       let nextDate = new Date();
       nextDate.setDate(fArr[fArr.length - 1].getDate() + 1)
       setArr([...fArr, nextDate]);
     }
     else if (e.target.scrollLeft === 0) {
-      e.target.scrollLeft = offset;
+      e.target.scrollLeft = curOffset;
       const fArr = arr.slice(0, -1);
       let prevDate = new Date();
       prevDate.setDate(fArr[0].getDate() - 1)
