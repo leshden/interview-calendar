@@ -1,9 +1,9 @@
 import {DaysPanelScroll, DaysPanelContainer} from './DaysPanelStyled';
 import DayPanel from '../day-panel/DayPanel';
-import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useEffect, useState, useContext } from 'react';
 import {GetSymbolTextOfDay} from '../../utils/Utils';
 import OffsetScrollContext from '../../contexts/OffsetScrollContext';
+import DraggableScroll from '../draggable-scroll/DraggableScroll';
 
 const DaysPanel = () => {
 
@@ -19,13 +19,13 @@ const DaysPanel = () => {
     return arr;
   }
 
-  const ref = useRef();
-  const { events } = useDraggable(ref);
+  // const ref = useRef();
+  // const { events } = useDraggable(ref);
 
-  useEffect(()=>{
-    const curOffset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
-    ref.current.scrollLeft = curOffset;
-  }, [])
+  // useEffect(()=>{
+  //   const curOffset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
+  //   ref.current.scrollLeft = curOffset;
+  // }, [])
 
   const [arr, setArr] = useState(initialState);
 
@@ -53,10 +53,8 @@ const DaysPanel = () => {
   }
 
   return (
-      <DaysPanelScroll
-      {...events}
-      ref={ref}
-      onScroll={handleOnScroll}>
+      <DraggableScroll
+      callbackOnScroll={handleOnScroll}>
       <DaysPanelContainer>
       {
         days.map((item, index) => {
@@ -66,7 +64,7 @@ const DaysPanel = () => {
        })
       }
       </DaysPanelContainer>
-    </DaysPanelScroll>
+    </DraggableScroll>
   );
 }
 
