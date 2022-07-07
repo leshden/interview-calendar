@@ -35,10 +35,8 @@ const DaysPanel = () => {
 
   const handleOnScroll = (e) => {
     const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
-    setOffset(e.target.scrollLeft);
     if (e.target.scrollLeft > curOffset) {
       e.target.scrollLeft = 0;
-      setOffset(0);
       const fArr = arr.slice(1);
       let nextDate = new Date();
       nextDate.setDate(fArr[fArr.length - 1].getDate() + 1)
@@ -51,6 +49,7 @@ const DaysPanel = () => {
       prevDate.setDate(fArr[0].getDate() - 1)
       setArr([prevDate, ...fArr]);
     }
+    setOffset(e.target.scrollLeft);
   }
 
   return (

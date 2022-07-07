@@ -6,7 +6,7 @@ export const DaysPanelScroll = styled.div`
 `;
 
 export const DaysPanelContainer = styled.div`
-  width: 130%;
+  width: 123%;
   display: flex;
   justify-content: space-between;
 `;
