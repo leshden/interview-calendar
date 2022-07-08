@@ -1,15 +1,14 @@
 import {DraggableScrollContainer} from './DraggableScrollStyled';
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
 import { useDraggable } from "react-use-draggable-scroll";
 
-const DraggableScroll = ({children, callbackOnScroll}) => {
+const DraggableScroll = ({children, callbackOnScroll, curOffset = 0}) => {
   const ref = useRef();
   const { events } = useDraggable(ref);
 
-  // useEffect(()=>{
-  //   const curOffset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
-  //   ref.current.scrollLeft = curOffset;
-  // }, [])
+  useEffect(()=>{
+    ref.current.scrollLeft = curOffset;
+  }, [curOffset])
 
   const handleOnScroll = (e) => {
     callbackOnScroll(e);

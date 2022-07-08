@@ -13,21 +13,34 @@ const TodoTable = () => {
   const hours = Array.from(Array(24).keys());
   const [offsetTopScroll, setOffsetTopScroll] = useState(0);
   const {offset} = useContext(OffsetScrollContext);
+  const [prevOffset, setPrevOffset] = useState(0);
+  const [curOffset, setCurOffset] = useState(0);
+  const ref = useRef();
+
+  useEffect(()=>{
+    const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
+    setCurOffset(curOffset);
+  }, [curOffset])
 
   const handleOnScroll = (e) => {
       setOffsetTopScroll(e.target.scrollTop);
       const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
+      console.log(`scrollLeft: ${e.target.scrollLeft}`)
       if (e.target.scrollLeft > offset) {
+        setPrevOffset(e.target.scrollLeft);
         e.target.scrollLeft = 0;
         const fArr = arr.slice(1);
         setArr([...fArr, count]);
         setCount(count + 1);
+        console.log(`Count + ${count}`);
       }
       else if (e.target.scrollLeft === 0) {
+        setPrevOffset(e.target.scrollLeft);
         e.target.scrollLeft = offset;
         const fArr = arr.slice(0, -1);
         setArr([fArr[0] - 1, ...fArr]);
         setCount(count - 1);
+        console.log(`Count - ${count}`);
       }
   }
 
@@ -35,8 +48,8 @@ const TodoTable = () => {
     <TodoTableMain>
       <TodoTableHours offset={offsetTopScroll} hours = {hours}/>
       <DraggableScroll
-        callbackOnScroll={handleOnScroll}>
-        <TodoTableContainer>
+        callbackOnScroll={handleOnScroll} curOffset={curOffset}>
+        <TodoTableContainer ref={ref}>
           {
             arr.map((item, index) => {
               return(
