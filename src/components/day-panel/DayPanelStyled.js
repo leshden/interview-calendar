@@ -6,6 +6,7 @@ export const DayPanelContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: yellow;
+  min-width: 40px;
 `;
 
 export const DayPanelText = styled.p`

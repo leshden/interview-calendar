@@ -26,14 +26,6 @@ const DaysPanel = () => {
     setCurOffset(curOffset);
   }, [curOffset])
 
-  // const { events } = useDraggable(ref);
-
-
-  // useEffect(()=>{
-  //   const curOffset = ref.current.firstChild.childNodes[1].offsetLeft - ref.current.firstChild.childNodes[0].offsetLeft;
-  //   ref.current.scrollLeft = curOffset;
-  // }, [])
-
   const [arr, setArr] = useState(initialState);
 
   const days = arr.map((item, index) => {
@@ -41,6 +33,7 @@ const DaysPanel = () => {
   });
 
   const handleOnScroll = (e) => {
+    setOffset(e.target.scrollLeft);
     const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
     if (e.target.scrollLeft > curOffset) {
       e.target.scrollLeft = 0;
@@ -56,7 +49,6 @@ const DaysPanel = () => {
       prevDate.setDate(fArr[0].getDate() - 1)
       setArr([prevDate, ...fArr]);
     }
-    setOffset(e.target.scrollLeft);
   }
 
   return (
