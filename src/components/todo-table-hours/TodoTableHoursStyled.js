@@ -5,7 +5,7 @@ export const TodoTableHoursContainer = styled.div`
   height: 500px;
   background: orange;
   overflow: scroll;
-  overflow-y: hidden;
+  overflow: hidden;
 `;
 
 export const TodoTableHourItem = styled.div`

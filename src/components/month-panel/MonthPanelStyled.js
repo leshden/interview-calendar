@@ -5,6 +5,7 @@ export const MonthPanelContainer = styled.div`
   justify-content:space-between;
   align-items: center;
   width: 90%;
+  padding-left: 5%
 `;
 
 export const Button = styled.button`

@@ -8,7 +8,6 @@ export const CalendarPanelContainer = styled.section`
 `;
 
 export const CalendarPanelDaysMonthContainer = styled.div`
-  padding-left: 5%;
   width: 100%;
   display: flex;
   justify-content: center;

@@ -1,7 +1,7 @@
 import {TodoTableContainer, TodoTableMain, TodoTableContainerInner} from './TodoTableStyled';
 import { useRef, useEffect, useState, useContext } from 'react';
 import TodoTableHours from '../todo-table-hours/TodoTableHours';
-import TodoTableRow from '../todo-table-row/TodoTableRow';
+import TodoTableColumn from '../todo-table-column/TodoTableColumn';
 import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 import DraggableScroll from '../draggable-scroll/DraggableScroll';
 
@@ -54,7 +54,7 @@ const TodoTable = () => {
           {
             arr.map((item, index) => {
               return(
-                  <TodoTableRow key = {index} item={item} hours={hours} index={index}/>
+                  <TodoTableColumn key = {index} item={item} hours={hours} index={index}/>
               )
             })
           }

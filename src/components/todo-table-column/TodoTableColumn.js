@@ -1,9 +1,9 @@
-import {TodoTableRowContainer} from './TodoTableRowStyled';
+import {TodoTableColumnContainer} from './TodoTableColumnStyled';
 import TodoTableCell from '../todo-table-cell/TodoTableCell';
 
-const TodoTableRow = ({hours, index, item}) => {
+const TodoTableColumn = ({hours, index, item}) => {
   return (
-    <TodoTableRowContainer key = {index}>
+    <TodoTableColumnContainer key = {index}>
       {
         hours.map((it, indexH) => {
           return(
@@ -12,8 +12,8 @@ const TodoTableRow = ({hours, index, item}) => {
         })
       }
 
-    </TodoTableRowContainer>
+    </TodoTableColumnContainer>
   );
 }
 
-export default TodoTableRow;
+export default TodoTableColumn;
