@@ -1,6 +1,14 @@
+//@flow
+import * as React from 'react';
 import {DayPanelContainer, DayPanelNumber, DayPanelText} from './DayPanelStyled';
 
-const DayPanel = ({txt, num, selected}) => {
+type Props = {
+  txt: string,
+  num: number,
+  selected: boolean
+}
+
+const DayPanel = ({txt, num, selected}: Props): React.Node => {
   return (
     <DayPanelContainer>
       <DayPanelText>{txt}</DayPanelText>

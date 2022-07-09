@@ -1,4 +1,4 @@
-import {DaysPanelScroll, DaysPanelContainer} from './DaysPanelStyled';
+import {DaysPanelMain, DaysPanelScroll, DaysPanelContainer} from './DaysPanelStyled';
 import DayPanel from '../day-panel/DayPanel';
 import { useRef, useEffect, useState, useContext } from 'react';
 import {GetSymbolTextOfDay} from '../../utils/Utils';
@@ -23,6 +23,7 @@ const DaysPanel = () => {
   const [curOffset, setCurOffset] = useState(0);
   useEffect(()=>{
     const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
+    console.log(`DAYS DISTANCE: ${curOffset}`);
     setCurOffset(curOffset);
   }, [curOffset])
 
@@ -52,6 +53,7 @@ const DaysPanel = () => {
   }
 
   return (
+      <DaysPanelMain>
       <DraggableScroll
       callbackOnScroll={handleOnScroll} curOffset = {curOffset}>
       <DaysPanelContainer ref={ref}>
@@ -64,6 +66,7 @@ const DaysPanel = () => {
       }
       </DaysPanelContainer>
     </DraggableScroll>
+    </DaysPanelMain>
   );
 }
 

@@ -7,6 +7,9 @@ export const DayPanelContainer = styled.div`
   align-items: center;
   background: yellow;
   min-width: 40px;
+  width: 100%;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
 `;
 
 export const DayPanelText = styled.p`

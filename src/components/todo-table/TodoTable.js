@@ -19,6 +19,7 @@ const TodoTable = () => {
 
   useEffect(()=>{
     const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
+    console.log(`TODO DISTANCE: ${curOffset}`);
     setCurOffset(curOffset);
   }, [curOffset])
 
