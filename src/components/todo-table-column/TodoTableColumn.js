@@ -1,7 +1,15 @@
+//@flow
+import * as React from 'react';
 import {TodoTableColumnContainer} from './TodoTableColumnStyled';
 import TodoTableCell from '../todo-table-cell/TodoTableCell';
 
-const TodoTableColumn = ({hours, index, item}) => {
+type Props = {
+  hours: Array<number>,
+  index: number,
+  item: number
+}
+
+const TodoTableColumn = ({hours, index, item}: Props) : React.Node => {
   return (
     <TodoTableColumnContainer key = {index}>
       {

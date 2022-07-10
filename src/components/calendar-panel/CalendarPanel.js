@@ -1,9 +1,10 @@
+//@flow
+import * as React from 'react';
 import {CalendarPanelContainer, CalendarPanelDaysMonthContainer} from './CalendarPanelStyled';
-import Fragment from 'react';
 import MonthPanel from '../month-panel/MonthPanel';
 import DaysPanel from '../days-panel/DaysPanel';
 
-const CalendarPanel = () => {
+const CalendarPanel = () : React.Node => {
 
   return (
       <CalendarPanelContainer role='section'>

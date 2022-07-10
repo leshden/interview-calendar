@@ -1,7 +1,9 @@
+//@flow
+import * as React from 'react';
 import {useState} from 'react';
 import {MonthPanelContainer, Button} from './MonthPanelStyled';
 
-const MonthPanel = () => {
+const MonthPanel = () : React.Node => {
   const [date, setDate] = useState(new Date());
   const monthYearStr = date.toLocaleString('en-US', { year: 'numeric', month: 'long'});
 

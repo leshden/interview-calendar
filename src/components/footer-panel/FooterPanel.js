@@ -1,4 +1,6 @@
-const FooterPanel = () => {
+//@flow
+import * as React from 'react';
+const FooterPanel = () : React.Node => {
   return (
     <div>
       Footer

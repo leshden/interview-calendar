@@ -1,9 +1,16 @@
+//@flow
+import * as React from 'react';
 import {TodoTableHourItem, TodoTableHoursContainer} from './TodoTableHoursStyled';
 import {useRef, useEffect} from 'react';
 
-const TodoTableHours = ({offset, hours}) => {
+type Props = {
+  offset: number,
+  hours: Array<number>
+}
 
-  const ref = useRef();
+const TodoTableHours = ({offset, hours} : Props) : React.Node => {
+
+  const ref:  React.ElementRef<typeof TodoTableHoursContainer> = useRef();
 
   useEffect(()=>{
     ref.current.scrollTop = offset;

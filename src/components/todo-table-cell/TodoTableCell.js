@@ -1,6 +1,12 @@
+//@flow
+import * as React from 'react';
 import {TodoTableCellStyled} from './TodoTableCellStyled';
 
-const TodoTableCell = ({item}) => {
+type Props = {
+  item: number
+}
+
+const TodoTableCell = ({item}:Props) : React.Node => {
   return (
     <TodoTableCellStyled>
       {item}
