@@ -12,8 +12,7 @@ const TodoTable = () => {
   const [arr, setArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const hours = Array.from(Array(24).keys());
   const [offsetTopScroll, setOffsetTopScroll] = useState(0);
-  const {offset, refToTable} = useContext(OffsetScrollContext);
-  const [prevOffset, setPrevOffset] = useState(0);
+  const {refToDays, refToTable} = useContext(OffsetScrollContext);
   const [curOffset, setCurOffset] = useState(0);
   const ref = useRef();
 
@@ -22,17 +21,19 @@ const TodoTable = () => {
     isDisableHandleScroll = true;
   }
 
-  useEffect(()=>{
-    const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
-    // console.log(`TODO DISTANCE: ${curOffset}`);
-    setCurOffset(curOffset);
-  }, [curOffset])
+  // useEffect(()=>{
+  //   const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
+  //   // console.log(`TODO DISTANCE: ${curOffset}`);
+  //   setCurOffset(curOffset);
+  // }, [curOffset])
 
   const handleOnScroll = (e) => {
 
       if (isDisableHandleScroll) {
         return;
       }
+
+      refToDays.current.scrollLeft = e.target.scrollLeft;
 
       setOffsetTopScroll(e.target.scrollTop);
       const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
@@ -60,7 +61,7 @@ const TodoTable = () => {
     <TodoTableMain>
       <TodoTableHours offset={offsetTopScroll} hours = {hours}/>
       <DraggableScroll
-        callbackOnScroll={handleOnScroll} curOffset={curOffset} offset={offset} myRef={refToTable}>
+        callbackOnScroll={handleOnScroll} curOffset={curOffset} myRef={refToTable}>
         <TodoTableContainer ref={ref}>
           {
             arr.map((item, index) => {

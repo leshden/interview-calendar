@@ -7,7 +7,8 @@ import DraggableScroll from '../draggable-scroll/DraggableScroll';
 
 const DaysPanel = () => {
 
-  const {setOffset, refToDays} = useContext(OffsetScrollContext);
+  const {refToDays, refToTable} = useContext(OffsetScrollContext);
+  // const [press, setPress] = useState(false);
 
   const initialState = () => {
     const arr = [new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date()];
@@ -38,13 +39,31 @@ const DaysPanel = () => {
     return {txt: GetSymbolTextOfDay(item.getDay()), num: item.getDate()}
   });
 
+  // const mouseDown = (e) => {
+  //   e.preventDefault();
+  //   setPress(true);
+  //   console.log('Down!!');
+  // }
+  //
+  // const mouseUp = (e) => {
+  //   e.preventDefault();
+  //   setPress(false);
+  //   console.log('Up!!');
+  // }
+  //
+  // const mouseOut = (e) => {
+  //   e.preventDefault();
+  //   console.log('Out!!');
+  // }
+
   const handleOnScroll = (e) => {
 
     if(isDisableHandleScroll) {
       return;
     }
 
-    setOffset(e.target.scrollLeft);
+    refToTable.current.scrollLeft = e.target.scrollLeft;
+
     const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
     if (e.target.scrollLeft > curOffset) {
       e.target.scrollLeft = 0;
