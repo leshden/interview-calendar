@@ -7,7 +7,7 @@ import DraggableScroll from '../draggable-scroll/DraggableScroll';
 
 const DaysPanel = () => {
 
-  const {setOffset} = useContext(OffsetScrollContext);
+  const {setOffset, refToDays} = useContext(OffsetScrollContext);
 
   const initialState = () => {
     const arr = [new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date()];
@@ -17,6 +17,11 @@ const DaysPanel = () => {
       value++;
     }
     return arr;
+  }
+
+  let isDisableHandleScroll = false;
+  const disableHandleScroll = () => {
+    isDisableHandleScroll = true;
   }
 
   const ref = useRef();
@@ -34,6 +39,11 @@ const DaysPanel = () => {
   });
 
   const handleOnScroll = (e) => {
+
+    if(isDisableHandleScroll) {
+      return;
+    }
+
     setOffset(e.target.scrollLeft);
     const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
     if (e.target.scrollLeft > curOffset) {
@@ -42,6 +52,7 @@ const DaysPanel = () => {
       let nextDate = new Date();
       nextDate.setDate(fArr[fArr.length - 1].getDate() + 1)
       setArr([...fArr, nextDate]);
+      disableHandleScroll();
     }
     else if (e.target.scrollLeft === 0) {
       e.target.scrollLeft = curOffset;
@@ -49,13 +60,14 @@ const DaysPanel = () => {
       let prevDate = new Date();
       prevDate.setDate(fArr[0].getDate() - 1)
       setArr([prevDate, ...fArr]);
+      disableHandleScroll();
     }
   }
 
   return (
       <DaysPanelMain>
       <DraggableScroll
-      callbackOnScroll={handleOnScroll} curOffset = {curOffset}>
+      callbackOnScroll={handleOnScroll} curOffset = {curOffset} myRef={refToDays}>
       <DaysPanelContainer ref={ref}>
       {
         days.map((item, index) => {

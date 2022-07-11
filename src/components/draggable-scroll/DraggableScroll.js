@@ -1,25 +1,27 @@
 import {DraggableScrollContainer} from './DraggableScrollStyled';
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useContext} from 'react';
 import { useDraggable } from "react-use-draggable-scroll";
+import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 
-const DraggableScroll = ({children, callbackOnScroll, curOffset = 0, offset = 0}) => {
-  const ref = useRef();
-  const { events } = useDraggable(ref);
+const DraggableScroll = ({children, callbackOnScroll, curOffset = 0, offset = 0, myRef}) => {
+  // const ref = useRef();
 
-  useEffect(()=>{
-    ref.current.scrollLeft = curOffset;
-  }, [curOffset])
-
-  useEffect(()=>{
-    ref.current.scrollLeft = offset;
-  }, [offset])
+  // const {tableScrollRef} = useContext(OffsetScrollContext);
+  const { events } = useDraggable(myRef);
+  // useEffect(()=>{
+  //   ref.current.scrollLeft = curOffset;
+  // }, [curOffset])
+  //
+  // useEffect(()=>{
+  //   ref.current.scrollLeft = offset;
+  // }, [offset])
 
   const handleOnScroll = (e) => {
     callbackOnScroll(e);
   }
 
   return (
-    <DraggableScrollContainer {...events} ref={ref} onScroll={handleOnScroll}>
+    <DraggableScrollContainer {...events} ref={myRef} onScroll={handleOnScroll}>
       {children}
     </DraggableScrollContainer>
   )
