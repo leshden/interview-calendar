@@ -8,6 +8,12 @@ import DraggableScroll from '../draggable-scroll/DraggableScroll';
 const DaysPanel = () => {
 
   const {refToDays, refToTable, isDayScroll, setDayScroll} = useContext(OffsetScrollContext);
+  const [curOffset, setCurOffset] = useState(0);
+
+  let isDisableHandleScroll = false;
+  const disableHandleScroll = () => {
+    isDisableHandleScroll = true;
+  }
 
   const initialState = () => {
     const arr = [new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date()];
@@ -19,20 +25,12 @@ const DaysPanel = () => {
     return arr;
   }
 
-  let isDisableHandleScroll = false;
-  const disableHandleScroll = () => {
-    isDisableHandleScroll = true;
-  }
+  const [arr, setArr] = useState(initialState);
 
-  const ref = useRef();
-  const [curOffset, setCurOffset] = useState(0);
   useEffect(()=>{
-    const curOffset = ref.current.childNodes[1].offsetLeft - ref.current.childNodes[0].offsetLeft;
-    console.log(`DAYS DISTANCE: ${curOffset}`);
+    const curOffset = refToDays.current.firstChild.childNodes[1].offsetLeft - refToDays.current.firstChild.childNodes[0].offsetLeft;
     setCurOffset(curOffset);
   }, [curOffset])
-
-  const [arr, setArr] = useState(initialState);
 
   const days = arr.map((item, index) => {
     return {txt: GetSymbolTextOfDay(item.getDay()), num: item.getDate()}
@@ -76,7 +74,7 @@ const DaysPanel = () => {
       <DaysPanelMain onMouseDown={mouseDown}>
       <DraggableScroll
       callbackOnScroll={handleOnScroll} curOffset = {curOffset} myRef={refToDays}>
-      <DaysPanelContainer ref={ref}>
+      <DaysPanelContainer>
       {
         days.map((item, index) => {
           return(

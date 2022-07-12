@@ -14,12 +14,16 @@ const TodoTable = () => {
   const [offsetTopScroll, setOffsetTopScroll] = useState(0);
   const {refToDays, refToTable, isDayScroll, setDayScroll} = useContext(OffsetScrollContext);
   const [curOffset, setCurOffset] = useState(0);
-  const ref = useRef();
 
   let isDisableHandleScroll = false;
   const disableHandleScroll = () => {
     isDisableHandleScroll = true;
   }
+
+  useEffect(()=>{
+    const curOffset = refToTable.current.firstChild.childNodes[1].offsetLeft - refToTable.current.firstChild.childNodes[0].offsetLeft;
+    setCurOffset(curOffset);
+  }, [curOffset])
 
   const handleOnScroll = (e) => {
 
@@ -33,15 +37,13 @@ const TodoTable = () => {
 
       setOffsetTopScroll(e.target.scrollTop);
       const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
-      // console.log(`scrollLeft: ${e.target.scrollLeft}`)
-      // console.log(`offset: ${offset}`);
+
       if (e.target.scrollLeft > offset) {
         const fArr = arr.slice(1);
         setArr([...fArr, count]);
         setCount(count + 1);
         e.target.scrollLeft = 0;
         disableHandleScroll();
-        // console.log(`Count + ${count}`);
       }
       else if (e.target.scrollLeft == 0) {
         e.target.scrollLeft = offset;
@@ -49,14 +51,12 @@ const TodoTable = () => {
         setArr([fArr[0] - 1, ...fArr]);
         setCount(count - 1);
         disableHandleScroll();
-        // console.log(`Count - ${count}`);
       }
   }
 
   const mouseDown = (e) => {
     e.preventDefault();
     setDayScroll(false);
-    console.log('Down!!');
   }
 
   return (
@@ -64,7 +64,7 @@ const TodoTable = () => {
       <TodoTableHours offset={offsetTopScroll} hours = {hours}/>
       <DraggableScroll
         callbackOnScroll={handleOnScroll} curOffset={curOffset} myRef={refToTable}>
-        <TodoTableContainer ref={ref}>
+        <TodoTableContainer>
           {
             arr.map((item, index) => {
               return(
