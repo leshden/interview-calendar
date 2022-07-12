@@ -15,7 +15,7 @@ const TodoTableColumn = ({hours, index, item}: Props) : React.Node => {
       {
         hours.map((it, indexH) => {
           return(
-            <TodoTableCell key={index.toString() + indexH.toString()} item={item} />
+            <TodoTableCell key={index.toString() + indexH.toString()} item={item} hour={it} />
           )
         })
       }

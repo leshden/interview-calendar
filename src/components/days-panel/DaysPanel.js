@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, useContext } from 'react';
 import {GetSymbolTextOfDay} from '../../utils/Utils';
 import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 import DraggableScroll from '../draggable-scroll/DraggableScroll';
+import {GetArrayDays} from '../../utils/Utils';
 
 const DaysPanel = () => {
 
@@ -15,17 +16,7 @@ const DaysPanel = () => {
     isDisableHandleScroll = true;
   }
 
-  const initialState = () => {
-    const arr = [new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date(), new Date()];
-    let value = -4;
-    for (let i = 0; i < arr.length; ++i) {
-      arr[i].setDate(arr[i].getDate() + value);
-      value++;
-    }
-    return arr;
-  }
-
-  const [arr, setArr] = useState(initialState);
+  const [arr, setArr] = useState(GetArrayDays());
 
   useEffect(()=>{
     const curOffset = refToDays.current.firstChild.childNodes[1].offsetLeft - refToDays.current.firstChild.childNodes[0].offsetLeft;
