@@ -10,7 +10,7 @@ type Props = {
 const TodoTableCell = ({item, hour}:Props) : React.Node => {
 
   const handleClick = () => {
-    console.log(`click cell H: ${hour}`);
+    console.log(`click cell D: ${item} H: ${hour}`);
   }
 
   return (

@@ -4,17 +4,11 @@ import { useDraggable } from "react-use-draggable-scroll";
 import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 
 const DraggableScroll = ({children, callbackOnScroll, curOffset = 0, myRef}) => {
-  // const ref = useRef();
 
-  // const {tableScrollRef} = useContext(OffsetScrollContext);
   const { events } = useDraggable(myRef);
   useEffect(()=>{
     myRef.current.scrollLeft = curOffset;
   }, [curOffset])
-  //
-  // useEffect(()=>{
-  //   ref.current.scrollLeft = offset;
-  // }, [offset])
 
   const handleOnScroll = (e) => {
     callbackOnScroll(e);

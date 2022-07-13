@@ -4,16 +4,21 @@ import TodoTableHours from '../todo-table-hours/TodoTableHours';
 import TodoTableColumn from '../todo-table-column/TodoTableColumn';
 import OffsetScrollContext from '../../contexts/OffsetScrollContext';
 import DraggableScroll from '../draggable-scroll/DraggableScroll';
+import {GetArrayDays} from '../../utils/Utils';
 
 
 const TodoTable = () => {
 
   const [count, setCount] = useState(10);
-  const [arr, setArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const [arr, setArr] = useState(GetArrayDays());
   const hours = Array.from(Array(24).keys());
   const [offsetTopScroll, setOffsetTopScroll] = useState(0);
   const {refToDays, refToTable, isDayScroll, setDayScroll} = useContext(OffsetScrollContext);
   const [curOffset, setCurOffset] = useState(0);
+
+  const days = arr.map((item, index) => {
+    return item.getDate();
+  });
 
   let isDisableHandleScroll = false;
   const disableHandleScroll = () => {
@@ -36,20 +41,22 @@ const TodoTable = () => {
       }
 
       setOffsetTopScroll(e.target.scrollTop);
-      const offset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
 
-      if (e.target.scrollLeft > offset) {
-        const fArr = arr.slice(1);
-        setArr([...fArr, count]);
-        setCount(count + 1);
+      const curOffset = e.target.firstChild.childNodes[1].offsetLeft - e.target.firstChild.childNodes[0].offsetLeft;
+      if (e.target.scrollLeft > curOffset) {
         e.target.scrollLeft = 0;
+        const fArr = arr.slice(1);
+        let nextDate = new Date();
+        nextDate.setDate(fArr[fArr.length - 1].getDate() + 1)
+        setArr([...fArr, nextDate]);
         disableHandleScroll();
       }
-      else if (e.target.scrollLeft == 0) {
-        e.target.scrollLeft = offset;
+      else if (e.target.scrollLeft === 0) {
+        e.target.scrollLeft = curOffset;
         const fArr = arr.slice(0, -1);
-        setArr([fArr[0] - 1, ...fArr]);
-        setCount(count - 1);
+        let prevDate = new Date();
+        prevDate.setDate(fArr[0].getDate() - 1)
+        setArr([prevDate, ...fArr]);
         disableHandleScroll();
       }
   }
@@ -66,7 +73,7 @@ const TodoTable = () => {
         callbackOnScroll={handleOnScroll} curOffset={curOffset} myRef={refToTable}>
         <TodoTableContainer>
           {
-            arr.map((item, index) => {
+            days.map((item, index) => {
               return(
                   <TodoTableColumn key = {index} item={item} hours={hours} index={index}/>
               )
