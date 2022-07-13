@@ -13,7 +13,7 @@ const TodoTableCell = ({item, hour}:Props) : React.Node => {
   const {data, setData} = React.useContext(OffsetScrollContext);
 
   const handleClick = () => {
-    if(!data.some(element => element.d === item && element.h === hour)) {
+    if(!hasData(item, hour)) {
       setData([...data, {d:item, h:hour}]);
       console.log('Add element');
     } else {
@@ -22,8 +22,14 @@ const TodoTableCell = ({item, hour}:Props) : React.Node => {
     console.log(`click cell D: ${item} H: ${hour}`);
   }
 
+  const hasData = (day: number, hour: number) : boolean => {
+    return data.some(element => element.d === day && element.h === hour);
+  }
+
+  let color = hasData(item, hour) ? 'green' : 'white';
+
   return (
-    <TodoTableCellStyled onClick={handleClick}>
+    <TodoTableCellStyled color={color} onClick={handleClick}>
       {item}
     </TodoTableCellStyled>
   )

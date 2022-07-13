@@ -4,7 +4,7 @@ export const TodoTableCellStyled = styled.div`
   width: 100%;
   min-width: 40px;
   height: 50px;
-  background: white;
+  background: ${props=>props.color};
   border-right: 1px solid gray;
   border-bottom: 1px solid gray;
 `;
